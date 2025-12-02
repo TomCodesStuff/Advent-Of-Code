@@ -16,11 +16,15 @@ def is_num_invalid(num : str) -> bool:
     else: return False
     
 
-def task_one() -> int:  
+def task_one() -> int:   
+    previous_invalid = set()
     total = 0
     for range_start, range_end in get_puzzle_input(): 
-        for num in range(int(range_start), int(range_end) + 1):  
-            if(is_num_invalid(str(num))): total += num 
+        for num in range(int(range_start), int(range_end) + 1):   
+            if num in previous_invalid: total += num
+            if(is_num_invalid(str(num))): 
+                total += num 
+                previous_invalid.add(num)
     return total  
 
 
@@ -44,11 +48,14 @@ def is_num_valid(num : str) -> bool:
 
 
 def task_two() -> int:
+    previous_invalid = set()
     total = 0 
     for range_start, range_end in get_puzzle_input(): 
-        for num in range(int(range_start), int(range_end) + 1):  
-            if not is_num_valid(str(num)):
-                total += num 
+        for num in range(int(range_start), int(range_end) + 1):   
+            if num in previous_invalid: total += num
+            elif not is_num_valid(str(num)):
+                total += num  
+                previous_invalid.add(num)
     return total
 
 
