@@ -8,8 +8,6 @@ def get_puzzle_input() -> None:
         return [line.strip() for line in f.readlines()] 
 
 
-
-
 def task_one() -> int: 
     dial_num = 50 
     psswd = 0
@@ -45,5 +43,6 @@ def task_two() -> int:
         elif pos == 0: psswd += 1 
     return psswd 
 
-print(task_one())
-print(task_two())
+
+print(f"Part 1: {task_one()}")
+print(f"Part 2: {task_two()}")
