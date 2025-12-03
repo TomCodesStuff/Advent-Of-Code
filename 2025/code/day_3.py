@@ -4,6 +4,9 @@ else:
     from .puzzle_input import getFilePath 
 
 
+JOLTAGE_LEN = 12
+
+
 def get_puzzle_input(): 
     with open(getFilePath()) as f:
         return [line.strip() for line in f.readlines()]
@@ -26,8 +29,8 @@ def task_one() -> int:
 def task_two() -> int: 
     total = 0 
     for battery_bank in get_puzzle_input(): 
-        joltage_cells = ["0" for _ in range(12)] 
-        cell_idx, limit_idx = 0, len(battery_bank) - 12 
+        joltage_cells = ["0" for _ in range(JOLTAGE_LEN)] 
+        cell_idx, limit_idx = 0, len(battery_bank) - JOLTAGE_LEN
 
         i = 0
         while(cell_idx < len(joltage_cells)):           
@@ -39,7 +42,7 @@ def task_two() -> int:
             joltage_cells[cell_idx] = highest_val 
             cell_idx += 1 
             i = next_idx
-            limit_idx = len(battery_bank) - 12 + cell_idx
+            limit_idx = len(battery_bank) - JOLTAGE_LEN + cell_idx
         total += int("".join(joltage_cells))
     return total
 
