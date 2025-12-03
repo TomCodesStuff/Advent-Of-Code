@@ -5,6 +5,7 @@ This repository contains my solutions for:
 - [Advent Of Code 2022](https://adventofcode.com/2022)
 - [Advent Of Code 2023](https://adventofcode.com/2023) 
 - [Advent Of Code 2024](https://adventofcode.com/2024) 
+- [Advent Of Code 2025](https://adventofcode.com/2025) 
 
 | Year: | Last Completed Day: | Programming Language(s):|
 | ----- | ------------------- | ----------------------- | 
