@@ -41,7 +41,7 @@ def task_two() -> int:
         next_range_start, _ = number_ranges[i + 1] 
         if range_end >= next_range_start: 
             number_ranges[i][1] = max(number_ranges[i][1], number_ranges[i + 1][1])
-            number_ranges = number_ranges[:i + 1] + number_ranges[i + 2:]
+            number_ranges.pop(i + 1)
         else: i += 1
     for start, end in number_ranges:  
         total += (end - start + 1)
