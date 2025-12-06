@@ -4,10 +4,6 @@ else:
     from .puzzle_input import getFilePath  
 
 
-
-
-
-
 def get_puzzle_input(): 
     number_ranges = [] 
     ids_to_check = []
