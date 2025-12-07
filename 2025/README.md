@@ -9,6 +9,7 @@
 |[4.](/2025/code/day_4.py)   | :star: :star:    |
 |[5.](/2025/code/day_5.py)   | :star: :star:    |
 |[6.](/2025/code/day_6.py)   | :star: :star:    |
+|[7.](/2025/code/day_7.py)   | :star: :star:    |
 
 
 
