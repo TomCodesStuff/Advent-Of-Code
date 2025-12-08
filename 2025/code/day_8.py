@@ -59,24 +59,23 @@ def task_two() -> int:
 
     for pair in coord_pairs[1:]: 
         coord_a, coord_b = pair 
-        start_graph, end_graph = None, None
+        circuits_to_merge = []
         for i, circuit in enumerate(circuits):  
-            if coord_a in circuit: 
-                start_graph = i 
-            if coord_b in circuit: 
-                end_graph = i 
+            if coord_a in circuit or coord_b in circuit:
+                circuit.add(coord_a) 
+                circuit.add(coord_b) 
+                circuits_to_merge.append(i)
+
+        if len(circuits_to_merge) == 0: circuits.append(set([coord_a, coord_b]))  
+        elif len(circuits_to_merge) > 1: 
+            merged_circuits = circuits[circuits_to_merge[0]]
+            for circuit_idx in circuits_to_merge[1:]: 
+                merged_circuits = merged_circuits.union(circuits[circuit_idx])
+                circuits.remove(circuits[circuit_idx]) 
+            circuits[circuits_to_merge[0]] = merged_circuits 
         
-        if start_graph is None and end_graph is None: 
-            circuits.append(set([coord_a, coord_b]))
-        elif start_graph == end_graph: continue 
-        elif start_graph is None and end_graph is not None: circuits[end_graph].add(coord_a)
-        elif end_graph is None and start_graph is not None: circuits[start_graph].add(coord_b)
-        else:
-            circuits[start_graph] = circuits[start_graph].union(circuits[end_graph])
-            circuits.pop(end_graph)
-        
-        for circuit in circuits:   
-            if(len(circuit) == num_coords): return coord_a[0] * coord_b[0]  
+        for circuit in circuits: 
+            if len(circuit) == num_coords: return coord_a[0] * coord_b[0]
     return 0
 
         
