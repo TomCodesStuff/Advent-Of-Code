@@ -32,15 +32,13 @@ def task_one() -> int:
     circuits = [set([coord_pairs[0]])] 
     for coords_pair in coord_pairs[1:NUM_SHORTEST_CONNECTIONS]:
         coord_a, coord_b = coords_pair
-        flag = False 
         circuits_to_merge = []
         for i, circuit in enumerate(circuits):  
             if coord_a in circuit or coord_b in circuit:  
                 circuits[i].add(coord_a)
                 circuits[i].add(coord_b) 
                 circuits_to_merge.append(circuits[i])
-                flag = True
-        if not flag: circuits.append(set([coord_a, coord_b]))   
+        if len(circuits_to_merge) == 0: circuits.append(set([coord_a, coord_b]))   
         elif len(circuits_to_merge) > 1:    
             merged_circuit = circuits_to_merge[0]
             circuits.remove(merged_circuit)
