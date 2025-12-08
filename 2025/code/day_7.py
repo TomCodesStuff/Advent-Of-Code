@@ -4,7 +4,6 @@ else:
     from .puzzle_input import getFilePath  
 
 
-
 def puzzle_input():
     puzzle_input = None 
     with open(getFilePath()) as f: 

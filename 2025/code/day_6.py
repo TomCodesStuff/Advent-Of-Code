@@ -51,9 +51,9 @@ def task_two() -> int:
     for problem in parse_puzzle_input():  
         nums = [[row[i] for row in problem[:-1]] for i in range(len(problem[0]))] 
         nums = ["".join(split_num) for split_num in nums]
-        operator = problem[-1]
-        if operator.strip() == "+": total += add(nums)
-        elif operator.strip() == "*": total += multiply(nums)
+        operator = problem[-1].strip()
+        if operator == "+": total += add(nums)
+        elif operator == "*": total += multiply(nums)
     return total
 
 
