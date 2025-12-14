@@ -4,42 +4,36 @@ import random
 import re 
 import sys
 
-if(__name__ != "__main__"): 
-    print("This has nothing to import")
-    exit()
-
-DIRPATH = "../Advent-Of-Code"
-AOCYEARS = [dir for dir in os.listdir(DIRPATH) if dir.isnumeric()] 
-
 
 def main():
     print("Weclome to Tom's Advent of Code solutions!")
-    n = len(AOCYEARS)
-    for index, year in enumerate(AOCYEARS):
-        if(index == n - 1): print(f" and {year}", "\n")
-        elif(index == 0): print(f"Available years: {year}", end="")
-        else: print(f", {year}", end="")
-    yearCommands()
+    availabe_years = [year for year in os.listdir("./") if year.isnumeric()]
+    print("Available years: ", end="")
+    for year in availabe_years[:-1]:
+        print(f"{year}, ", end="")
+    print(f"and {availabe_years[-1]}!")
+    year_commands(availabe_years)
 
 
-def printYearCommands():
+def print_available_commands(available_years : list[str]):
     print("Type one of the commands below:")
-    for year in AOCYEARS:
-        print(f"\t - {year} -> solutions for {year}")  
-    print("\t - exit -> Close the program")
-    print("\t - help -> Print a list of commands")  
-    print("\t - song -> Recommend a song Tom likes")  
+    for year in available_years:
+        print(f" - {year} -> Show solutions for {year}.")  
+    print(" - exit -> Exit the program.")
+    print(" - help -> Output the list of available commands.")  
+    print(" - song -> Recommend a random song that Tom likes.")  
 
 
-def yearCommands():
-    printYearCommands()
+def year_commands(available_years : list[str]):
+    print_available_commands(available_years)
+    
     while(True):
-        commandInput = input("Command: ").replace(" ", "") 
-        if(commandInput in AOCYEARS): break
-        elif(commandInput == "exit"): exit() 
-        elif(commandInput == "song"): recommendSong()
-        elif(commandInput == "help"): printYearCommands()
-    dayCommands(commandInput)
+        command_input = input("Command: ").replace(" ", "") 
+    #    if(commandInput in AOCYEARS): break
+    #    elif(commandInput == "exit"): exit() 
+     #   elif(commandInput == "song"): recommendSong()
+     #   elif(commandInput == "help"): print_available_commands()
+    #dayCommands(commandInput)
 
 
 def getDayCommands(puzzleFiles): 
@@ -92,5 +86,6 @@ def outputDay(year, day, dayNumber):
 def recommendSong():
     song = random.choice(open("songs.txt").read().splitlines())
     print(f"Tom recommends: {song}" )
+
 
 if(__name__ == "__main__"): main()
