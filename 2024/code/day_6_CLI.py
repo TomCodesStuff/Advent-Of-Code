@@ -26,6 +26,7 @@ route_map = None
 placeable_obstacles, loop_number = 0, 1
 idx = 0
 
+
 def print_map(task, num_positions, clear_flag=True):
     global placeable_obstacles, idx
      
