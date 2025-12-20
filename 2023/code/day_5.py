@@ -31,7 +31,6 @@ class DayFive(Solution):
         return (seeds, gardenMappings)
 
 
-
     def parse_map(filePtr):
         spaceCount = 0
         numLst = []
