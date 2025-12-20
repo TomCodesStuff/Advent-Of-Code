@@ -1,5 +1,5 @@
 from __future__ import annotations
-from solution_base.solution import Solution 
+from solution_base import Solution 
 
 
 class PaperRoll(): 

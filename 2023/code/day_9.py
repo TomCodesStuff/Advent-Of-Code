@@ -1,4 +1,4 @@
-from solution_base.solution import Solution 
+from solution_base import Solution 
 
 
 class DayNine(Solution): 

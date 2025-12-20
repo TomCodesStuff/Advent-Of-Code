@@ -1,5 +1,5 @@
 import math
-from solution_base.solution import Solution 
+from solution_base import Solution 
 
 # TODO clean up repeated code
 

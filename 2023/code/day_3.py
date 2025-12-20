@@ -1,4 +1,4 @@
-from solution_base.solution import Solution 
+from solution_base import Solution 
 
 # TODO repeated code in parts one + two can be merged 
 

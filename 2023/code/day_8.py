@@ -1,6 +1,6 @@
 import re
 import math 
-from solution_base.solution import Solution 
+from solution_base import Solution 
 
 
 class Node():

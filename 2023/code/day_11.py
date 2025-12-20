@@ -1,5 +1,6 @@
 from solution_base.solution import Solution 
 
+# TODO move repeated code
 
 class DayEleven(Solution): 
 

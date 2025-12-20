@@ -1,5 +1,5 @@
 import re 
-from solution_base.solution import Solution 
+from solution_base import Solution 
 
 
 class DaySeven(Solution):
