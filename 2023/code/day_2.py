@@ -1,15 +1,15 @@
 import math
-import re 
-if(__name__ == "__main__"):
-    from puzzle_input import getFilePath
-else:
-    from .puzzle_input import getFilePath
+import re
+from solution_base.solution import Solution 
 
-def parse(line):
-    return re.sub("Game|[,;:]", "", line.strip("\n")).lstrip().split(" ")
 
-def taskOne():
-    with open(getFilePath()) as file:
+class DayTwo(Solution): 
+
+    def parse(self, line):
+        return re.sub("Game|[,;:]", "", line.strip("\n")).lstrip().split(" ")
+
+
+    def task_one(self):        
         total = 0
         gamePossible = True
         colorDict = {
@@ -17,29 +17,29 @@ def taskOne():
             "green": 13,
             "blue": 14
         }
-        for line in file:
-            line = parse(line)
+
+        for line in self.get_puzzle_input():
+            line = self.parse(line)
             for i in range(2, len(line), 2): 
                 if(int(line[i - 1]) > colorDict[line[i]]): 
                     gamePossible = False
                     break
-                else:
-                    gamePossible = True
-            if(gamePossible): 
-                total += int(line[0])
+                else: gamePossible = True
+            if(gamePossible): total += int(line[0])
             gamePossible = True
         return total
-    
-def taskTwo():
-     with open(getFilePath()) as file:
+        
+
+    def task_two(self):
         total = 0
         colorDict = {
             "red" : 0,
             "green": 0,
             "blue": 0
         }
-        for line in file:
-            line = parse(line)
+
+        for line in self.get_puzzle_input():
+            line = self.parse(line)
             for i in range(2, len(line), 2): 
                 if(int(line[i - 1]) > colorDict[line[i]]):
                     colorDict[line[i]] = int(line[i - 1])
@@ -47,5 +47,8 @@ def taskTwo():
             colorDict = dict.fromkeys(colorDict, 0) 
         return total
 
-print(f"Part 1: {taskOne()}")
-print(f"Part 2: {taskTwo()}")
+
+if __name__ == "__main__": 
+    s = DayTwo() 
+    print(f"Part 1: {s.task_one()}")
+    print(f"Part 2: {s.task_two()}")
