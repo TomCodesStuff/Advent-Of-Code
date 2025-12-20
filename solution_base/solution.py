@@ -1,9 +1,10 @@
 import inspect 
 import os
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 from typing import Any
 
-class Solution():
+
+class Solution(ABC):
     def get_puzzle_input(self, puzzle_input_path : str|None = None) -> list[str]:
         if puzzle_input_path is None: 
             func_caller_path_parts = inspect.stack()[1].filename.split(os.sep) 
@@ -18,6 +19,7 @@ class Solution():
 
     @abstractmethod
     def task_one(self) -> Any: return
+
 
     @abstractmethod
     def task_two(self) -> Any: return

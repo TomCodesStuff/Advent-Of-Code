@@ -1,74 +1,79 @@
-if(__name__ == "__main__"):
-    from puzzle_input import getFilePath
-else:
-    from .puzzle_input import getFilePath
+from solution_base import Solution 
 
-# Solution one
-def taskOne():
 
-    # Gets values from line and seperates by space, each word is index, can be used for ints to 
-    i = 0 
-    index = 0
-    sum = 0
-    with open(getFilePath()) as f:
-        for line in f: # For each line in f 
-                index = 0  
-                i = 0
-                data = line.strip().split(",")
-                string = str(data[0])
-                while(string[i] != "-"):
-                    index+=1 
-                    i+=1
+class DayFour(Solution): 
+
+
+    # Solution one
+    def task_one(self):
+
+        # Gets values from line and seperates by space, each word is j, can be used for ints to 
+        i, j, total = 0, 0, 0
+        
+        for line in self.get_puzzle_input():  
+                i, j = 0, 0  
+                data = line.split(",")
+                
+                dataStr = str(data[0])
+                while(dataStr[i] != "-"):
+                    j += 1 
+                    i += 1
+                
                 i = 0  
-                firstRangeL = int(string[:index])
-                firstRangeH = int(string[index+1:])
-                string = str(data[1]) 
-                index = 0
-                while(string[i] != "-"):
-                    index+=1
+                firstRangeL = int(dataStr[:j])
+                firstRangeH = int(dataStr[j+1:])
+                dataStr = str(data[1]) 
+                j = 0
+                
+                while(dataStr[i] != "-"):
+                    j += 1
                     i+=1  
-                secondRangeL = int(string[:index])
-                secondRangeH = int(string[index+1:])  
-                if(firstRangeL >= secondRangeL and firstRangeH <= secondRangeH):
-                    sum +=1 
-                elif(secondRangeL >= firstRangeL and secondRangeH <= firstRangeH):
-                    sum+=1
-    return sum
+                
+                secondRangeL = int(dataStr[:j])
+                secondRangeH = int(dataStr[j+1:])  
+                
+                if(firstRangeL >= secondRangeL and firstRangeH <= secondRangeH): total +=1 
+                elif(secondRangeL >= firstRangeL and secondRangeH <= firstRangeH): total +=1
+        return total
 
-# Solution 2
-def taskTwo():
-    # Gets values from line and seperates by space, each word is index, can be used for ints to 
-    i = 0 
-    index = 0
-    sum = 0 
-    with open(getFilePath()) as f:
-        for line in f: # For each line in f 
-            index = 0  
-            i = 0
+
+    # Solution 2
+    def task_two(self):
+        # Gets values from line and seperates by space, each word is j, can be used for ints to 
+        i, j, total = 0, 0, 0 
+
+        for line in self.get_puzzle_input(): 
+            i, j = 0, 0
             data = line.strip().split(",")
-            string = str(data[0])
-            while(string[i] != "-"):
-                index+=1 
-                i+=1
+            
+            
+            dataStr = str(data[0])
+            while(dataStr[i] != "-"):
+                i +=1
+                j += 1
+            
+            
             i = 0  
-            firstRangeL = int(string[:index])
-            firstRangeH = int(string[index+1:])
-            index = 0
-            string = str(data[1])
-            while(string[i] != "-"):
-                index+=1
+            firstRangeL = int(dataStr[:j])
+            firstRangeH = int(dataStr[j + 1:])
+            j = 0
+            
+            dataStr = str(data[1])
+            while(dataStr[i] != "-"):
                 i+=1  
-            secondRangeL = int(string[:index])
-            secondRangeH = int(string[index+1:])  
-            if(firstRangeL >= secondRangeL and firstRangeH <= secondRangeH):
-                sum +=1 
-            elif(secondRangeL >= firstRangeL and secondRangeH <= firstRangeH):
-                sum+=1
-            elif(firstRangeH - secondRangeL >=0 and firstRangeH - secondRangeH <= 0):
-                sum+=1
-            elif(secondRangeH - firstRangeL >=0 and secondRangeH - firstRangeH <=0):
-                sum+=1
-    return sum
+                j+=1
+            
+            secondRangeL = int(dataStr[:j])
+            secondRangeH = int(dataStr[j+1:])  
+            
+            if(firstRangeL >= secondRangeL and firstRangeH <= secondRangeH): total  +=1 
+            elif(secondRangeL >= firstRangeL and secondRangeH <= firstRangeH): total +=1
+            elif(firstRangeH - secondRangeL >=0 and firstRangeH - secondRangeH <= 0): total +=1
+            elif(secondRangeH - firstRangeL >=0 and secondRangeH - firstRangeH <= 0): total +=1
+        return total 
   
-print(f"Part 1: {taskOne()}")
-print(f"Part 2: {taskTwo()}")
+
+if __name__ == "__main__": 
+    s = DayFour() 
+    print(f"Part 1: {s.task_one()}")
+    print(f"Part 2: {s.task_two()}")
