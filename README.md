@@ -5,7 +5,7 @@ This repository contains my solutions for:
 - [Advent Of Code 2022](https://adventofcode.com/2022)
 - [Advent Of Code 2023](https://adventofcode.com/2023) 
 - [Advent Of Code 2024](https://adventofcode.com/2024) 
-- [Advent Of Code 2025](https://adventofcode.com/2025) 
+- [Advent Of Code 2025](https://adventofcode.com/2025)  
 
 | Year: | Last Completed Day: | Programming Language(s):|
 | ----- | ------------------- | ----------------------- | 
@@ -16,5 +16,17 @@ This repository contains my solutions for:
 
 ## Running Solutions: 
 
-All solutions can be run easily from [main.py](./main.py). <br>
-But each solution can also be run manually from their own file
+To run a particular solution, input a version of the following command from the project root:
+
+```bash
+python -m year.code.day_x
+``` 
+
+Replacing `year` and `x` with the desired values. <br> 
+For example:
+
+```bash
+python -m 2022.code.day_1
+``` 
+
+Would run the solutions for day one of 2022.
