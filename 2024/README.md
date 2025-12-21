@@ -1,5 +1,6 @@
 # Advent Of Code 2024
 
+The Year Of Frantic Uni Deadlines...
 
 | Day:                       | Stars:           |
 | -------------------------- | ---------------- | 

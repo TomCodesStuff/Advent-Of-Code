@@ -1,5 +1,6 @@
 # Advent Of Code 2025
 
+The Year Of Managing A Full Time Job...
 
 | Day:                       | Stars:           |
 | -------------------------- | ---------------- | 

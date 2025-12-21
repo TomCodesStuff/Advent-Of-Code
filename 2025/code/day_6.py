@@ -23,15 +23,13 @@ class DaySix(Solution):
 
     def multiply(self, nums) -> int:  
         res = 1
-        for num in nums: 
-            res *= int(num)  
+        for num in nums: res *= int(num)  
         return res
 
 
     def add(self, nums) -> int:  
         res = 0
-        for num in nums: 
-            res += int(num) 
+        for num in nums: res += int(num) 
         return res
 
 
