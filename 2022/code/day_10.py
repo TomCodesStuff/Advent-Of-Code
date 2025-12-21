@@ -1,52 +1,56 @@
-if(__name__ == "__main__"):
-    from puzzle_input import getFilePath
-else:
-    from .puzzle_input import getFilePath
+from solution_base import Solution 
 
-# Solution 1
-def taskOne():
-    cycle = 1 
-    x = 1
-    sum = 0
-    with open(getFilePath()) as f:
-        input = [] 
-        for line in f: # For each line in f
-                line = line.strip().split(" ")  
+
+class DayTen(Solution): 
+    def __init__(self):
+        self.checkCycle = 20
+        self.crtWidth = 40
+
+
+    # Solution 1
+    def task_one(self):
+        cycle, x, total = 1, 1, 0 
+
+        for line in self.get_puzzle_input(): 
+                line = line.split(" ")  
                 if(line[0] == "addx"):
-                    cycle+=1 
-                    if(cycle == 20 or ((cycle / 20) % 2 == 1 and (cycle / 20) <= 11)): sum += (x * cycle)
+                    cycle += 1 
+                    if(cycle == self.checkCycle or ((cycle / self.checkCycle) % 2 == 1 and (cycle / self.checkCycle) <= 11)): 
+                        total += (x * cycle)
                     x += int(line[1])
-                    cycle+=1
-                else: cycle+=1
-                if(cycle == 20 or ((cycle / 20) % 2 == 1 and (cycle / 20) <= 11)): sum += (x * cycle)
-    return sum      
+                    cycle += 1
+                else: cycle += 1
+                if(cycle == self.checkCycle or ((cycle / self.checkCycle) % 2 == 1 and (cycle / self.checkCycle) <= 11)): total += (x * cycle)
+        return total    
 
-# Solution two
-def taskTwo():
-    cycle = 1 
-    x = 1
-    screen = []
-    screen = ["." for i in range(40)]
 
-    with open(getFilePath()) as f:
-        input = [] 
-        for line in f: # For each line in f
-                line = line.strip().split(" ")
-                if(abs(x - (cycle-1)) <= 1): screen[(cycle) - 1] = "#"
+    # Solution two
+    def task_two(self): 
+        cycle, x = 1, 1
+        screen = ["." for _ in range(self.crtWidth)]
+
+        for line in self.get_puzzle_input(): 
+                line = line.split(" ")
+                if(abs(x - (cycle - 1)) <= 1): screen[(cycle) - 1] = "#"
                 if(line[0] == "addx"):
-                    cycle+=1  
+                    cycle += 1  
                     if(abs(x - (cycle-1)) <= 1): screen[(cycle) - 1] = "#"
-                    if(cycle == 40):
+                    if(cycle == self.crtWidth):
                         print("".join(screen))
-                        screen = ["." for item in screen]
+                        screen = ["." for _ in screen]
                         cycle = 0
                     x += int(line[1])
                     cycle+=1
                 else: cycle+=1
-                if(cycle == 40):
+                if(cycle == self.crtWidth):
                     print("".join(screen))
-                    screen = ["." for item in screen]
+                    screen = ["." for _ in screen]
                     cycle = 0
-                
-print(f"Part 1: {taskOne()}")
-taskTwo()
+        return -1
+
+
+if __name__ == "__main__": 
+    s = DayTen() 
+    print(f"Part 1: {s.task_one()}")
+    print(f"Part 2: (See Below)")
+    s.task_two()
