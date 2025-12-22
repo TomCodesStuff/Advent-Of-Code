@@ -18,7 +18,14 @@ This repository contains my solutions for:
 
 ## Running Solutions: 
 
-To run a particular solution, input a version of the following command from the project root:
+Each solution can be run from `main.py` (recommended). <br>
+To run `main.py` simply input the following command in the project root. 
+
+```bash 
+python main.py 
+```
+
+Alternatively, solutions can be ran without using `main.py` by executing a version of the following command in the project root:
 
 ```bash
 python -m year.code.day_x
