@@ -28,6 +28,8 @@ class DayTen(Solution):
     def task_two(self): 
         cycle, x = 1, 1
         screen = ["." for _ in range(self.crtWidth)]
+        crtMessage = []
+
 
         for line in self.get_puzzle_input(): 
                 line = line.split(" ")
@@ -35,22 +37,24 @@ class DayTen(Solution):
                 if(line[0] == "addx"):
                     cycle += 1  
                     if(abs(x - (cycle-1)) <= 1): screen[(cycle) - 1] = "#"
-                    if(cycle == self.crtWidth):
-                        print("".join(screen))
+                    if(cycle == self.crtWidth): 
+                        crtMessage.append(screen)
                         screen = ["." for _ in screen]
                         cycle = 0
                     x += int(line[1])
                     cycle+=1
                 else: cycle+=1
+                
                 if(cycle == self.crtWidth):
-                    print("".join(screen))
+                    crtMessage.append(screen)
                     screen = ["." for _ in screen]
                     cycle = 0
-        return -1
+        return crtMessage
 
 
 if __name__ == "__main__": 
     s = DayTen() 
     print(f"Part 1: {s.task_one()}")
-    print(f"Part 2: (See Below)")
-    s.task_two()
+    print(f"Part 2: (See Below):")
+    for row in s.task_two(): 
+        print("".join(row))
