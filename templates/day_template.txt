@@ -1,0 +1,14 @@
+from solution_base import Solution 
+
+
+class Day$day(Solution): 
+
+
+    def task_one(self) -> int: return 0
+    def task_two(self) -> int: return 0
+        
+
+if __name__ == "__main__": 
+    s = Day$day() 
+    print(f"Part 1: {s.task_one()}")
+    print(f"Part 2: {s.task_two()}")

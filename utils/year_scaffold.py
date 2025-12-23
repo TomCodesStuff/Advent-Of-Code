@@ -2,6 +2,8 @@ from datetime import datetime
 from pathlib import Path
 from string import Template
 
+
+# TODO Add option to manually specify year 
 class YearScaffold():
     
 
