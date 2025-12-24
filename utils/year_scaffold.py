@@ -5,6 +5,8 @@ from string import Template
 
 # TODO Add option to manually specify year 
 class YearScaffold():
+    def __init__(self):
+        self.first_aoc_year = 2015
     
 
     def create_dir(self, dir_to_create : Path) -> None: 
@@ -15,15 +17,26 @@ class YearScaffold():
             dir_to_create.mkdir(exist_ok=True, parents=True)
 
     
-    def generate_directory_structure(self) -> Path:  
-        current_year = datetime.today().strftime("%Y")
-        print(f"GENERATING: Directory structure for {current_year}.")
-        project_root = Path(__file__).parent.parent 
-        year_dir = project_root / current_year 
-        self.create_dir(year_dir)
-        self.create_dir(year_dir / "code")
-        self.create_dir(year_dir / "puzzle_inputs")   
-        return year_dir
+    def generate_directory_structure(self, year:int=None) -> Path|None:  
+        latest_aoc_year = int(datetime.today().strftime("%Y"))
+        
+        current_month = int(datetime.today().strftime("%m"))
+        if current_month != 12: latest_aoc_year -= 1
+
+        year_to_create = year if year is not None else latest_aoc_year
+
+        if self.first_aoc_year <= year_to_create <= latest_aoc_year:             
+            print(f"GENERATING: Directory structure for {year_to_create}.")
+            project_root = Path(__file__).parent.parent 
+            year_dir = project_root / str(year_to_create)
+            self.create_dir(year_dir)
+            self.create_dir(year_dir / "code")
+            self.create_dir(year_dir / "puzzle_inputs")   
+            return year_dir 
+        else: 
+            print(f"ERROR: {year_to_create} is an invalid year for Advent Of Code.\n"
+                  f"Valid years are between {self.first_aoc_year} and {latest_aoc_year}.")
+            return None
     
 
     def generate_base_files(self, year_dir : Path) -> None: 
@@ -46,9 +59,6 @@ class YearScaffold():
             print(f"SKIPPING: README.md exists in `{year_dir}`")
 
 
-    def build_year_scaffold(self) -> None:
-        year_dir = self.generate_directory_structure() 
-        self.generate_base_files(year_dir) 
-
-
-YearScaffold().build_year_scaffold()
+    def build_year_scaffold(self, year:int=None) -> None:
+        year_dir = self.generate_directory_structure(year) 
+        if year_dir: self.generate_base_files(year_dir) 
