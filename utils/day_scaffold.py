@@ -11,7 +11,19 @@ class DayScaffold():
             "11" : "Eleven", "12" : "Twelve", "13" : "Thirteen",  "14" : "Fourteen", "15" : "Fifteen", 
             "16" : "Sixteen", "17" : "Seventeen", "18" : "Eighteen", "19" : "Ninteen",  "20" : "Twenty", 
             "21" : "TwentyOne", "22" : "TwentyTwo", "23" : "TwentyThree", "24" : "TwentyFour", "25" : "TwentyFive"   
-        }
+        } 
+    
+
+    def generate_file(self, file_path : Path, file_contents: str="") -> None:
+        if file_path.exists(): 
+            print(f"SKIPPING: {file_path.name} exists in {file_path.parent}") 
+        else:
+            try:  
+                print(f"CREATING: `{file_path.name}` in `{file_path.parent}`.")  
+                if file_contents: file_path.write_text(file_contents)
+                else: file_path.touch()
+            except FileNotFoundError:
+                print(f"ERROR: `{file_path.name}` not created. One or more missing directories in `{file_path.parent}`.") 
 
 
     def build_day_scaffold(self, day:str="", year:str="") -> None:  
@@ -24,29 +36,14 @@ class DayScaffold():
         print(f"GENERATING: files for day {day} of {year}.")
         project_root = Path(__file__).parent.parent 
 
-        # TODO both block similiar, can probably be made into a function
-        py_file_path = project_root / year / "code" / f"day_{day}.py"
-        if py_file_path.exists(): 
-            print(f"SKIPPING: {py_file_path.name} exists in {py_file_path.parent}") 
-        else:
-            day_template_path = project_root / "templates" / "day_template.txt" 
-            day_template = Template(day_template_path.read_text()).substitute({"day" : self.number_to_word[day]}) 
-            try:  
-                print(f"CREATING: `{py_file_path.name}` in `{py_file_path.parent}`.") 
-                py_file_path.write_text(day_template)
-            except FileNotFoundError:
-                print(f"ERROR: `{py_file_path.name}` not created. One or more missing directories in `{py_file_path.parent}`.") 
-         
+        day_file_path = project_root / year / "code" / f"day_{day}.py" 
+        day_template_path = project_root / "templates" / "day_template.txt" 
+        day_template = Template(day_template_path.read_text()).substitute({"day" : self.number_to_word[day]})  
+        self.generate_file(day_file_path, day_template)
+        
         puzzle_input_path = project_root / year / "puzzle_inputs" / f"day_{day}.txt" 
-        if puzzle_input_path.exists(): 
-            print(f"SKIPPING: {puzzle_input_path.name} exists in {puzzle_input_path.parent}") 
-            return 
-        else:
-            try: 
-                print(f"CREATING: `{puzzle_input_path.name}` in `{puzzle_input_path.parent}`.") 
-                puzzle_input_path.touch() 
-            except FileExistsError: 
-                print(f"ERROR: `{puzzle_input_path.name}` not created. One or more missing directories in `{puzzle_input_path.parent}`.") 
+        self.generate_file(puzzle_input_path)
 
 
-DayScaffold().build_day_scaffold(day="12", year="2025")
+
+DayScaffold().build_day_scaffold(day="25", year="2022")
