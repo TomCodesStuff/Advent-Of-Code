@@ -6,12 +6,14 @@ from string import Template
 class DayScaffold():  
     def __init__(self):
         self.number_to_word = {
-            "1" : "One",  "2" : "Two",  "3" : "Three", "4" : "Four", "5" : "Five", 
-            "6" : "Six", "7" : "Seven", "8" : "Eight", "9" : "Nine",  "10" : "Ten", 
-            "11" : "Eleven", "12" : "Twelve", "13" : "Thirteen",  "14" : "Fourteen", "15" : "Fifteen", 
-            "16" : "Sixteen", "17" : "Seventeen", "18" : "Eighteen", "19" : "Ninteen",  "20" : "Twenty", 
-            "21" : "TwentyOne", "22" : "TwentyTwo", "23" : "TwentyThree", "24" : "TwentyFour", "25" : "TwentyFive"   
+            1 : "One",  2 : "Two",  3 : "Three", 4 : "Four", 5 : "Five", 
+            6 : "Six", 7 : "Seven", 8 : "Eight", 9 : "Nine",  10 : "Ten", 
+            11 : "Eleven", 12 : "Twelve", 13 : "Thirteen",  14 : "Fourteen", 15 : "Fifteen", 
+            16 : "Sixteen", 17 : "Seventeen", 18 : "Eighteen", 19 : "Ninteen",  20 : "Twenty", 
+            21 : "TwentyOne", 22 : "TwentyTwo", 23 : "TwentyThree", 24 : "TwentyFour", 25 : "TwentyFive"   
         } 
+
+        self.max_aoc_day = 25
     
 
     def generate_file(self, file_path : Path, file_contents: str="") -> None:
@@ -26,24 +28,25 @@ class DayScaffold():
                 print(f"ERROR: `{file_path.name}` not created. One or more missing directories in `{file_path.parent}`.") 
 
 
-    def build_day_scaffold(self, day:str="", year:str="") -> None:  
-        if not year: year = datetime.today().strftime("%Y")
-        if not day: day = datetime.today().strftime("%d")
-        if day > "25": 
+    def build_day_scaffold(self, day:int=None, year:int=None) -> None:  
+        if not year: year = int(datetime.today().strftime("%Y"))
+        if not day: day = int(datetime.today().strftime("%d"))
+        
+        if day > self.max_aoc_day: 
             print("SKIPPING: No puzzle as date exceeds the 25th.") 
             return 
 
         print(f"GENERATING: files for day {day} of {year}.")
         project_root = Path(__file__).parent.parent 
 
-        day_file_path = project_root / year / "code" / f"day_{day}.py" 
+        day_file_path = project_root / str(year) / "code" / f"day_{day}.py" 
         day_template_path = project_root / "templates" / "day_template.txt" 
         day_template = Template(day_template_path.read_text()).substitute({"day" : self.number_to_word[day]})  
         self.generate_file(day_file_path, day_template)
         
-        puzzle_input_path = project_root / year / "puzzle_inputs" / f"day_{day}.txt" 
+        puzzle_input_path = project_root / str(year) / "puzzle_inputs" / f"day_{day}.txt" 
         self.generate_file(puzzle_input_path)
 
 
 
-DayScaffold().build_day_scaffold(day="25", year="2022")
+DayScaffold().build_day_scaffold(day=25, year=2015)
