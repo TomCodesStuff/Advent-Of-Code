@@ -3,7 +3,6 @@ from pathlib import Path
 from string import Template
 
 
-# TODO Add option to manually specify year 
 class YearScaffold():
     def __init__(self):
         self.first_aoc_year = 2015

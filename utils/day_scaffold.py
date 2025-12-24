@@ -46,7 +46,3 @@ class DayScaffold():
         
         puzzle_input_path = project_root / str(year) / "puzzle_inputs" / f"day_{day}.txt" 
         self.generate_file(puzzle_input_path)
-
-
-
-DayScaffold().build_day_scaffold(day=25, year=2015)
