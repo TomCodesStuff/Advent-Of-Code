@@ -1,0 +1,18 @@
+{
+    "socket_data" : {
+        "host_url" : "adventofcode.com", 
+        "port" : 443, 
+        "timeout" : 10 
+    },
+    "request_data" : {
+        "method" : "GET",  
+        "protocol" : "HTTP/1.1",
+        "headers" : {
+            "Host" : "adventofcode.com", 
+            "User-Agent" : "github.com/TomCodesStuff/Advent-Of-Code/utils/scrape_puzzle_input by Tom Gibson", 
+            "Cookie" : "session=",
+            "Connection" : "close"
+        },
+        "body" : ""
+    }
+}

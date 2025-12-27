@@ -13,6 +13,7 @@ class DayScaffold():
             21 : "TwentyOne", 22 : "TwentyTwo", 23 : "TwentyThree", 24 : "TwentyFour", 25 : "TwentyFive"   
         } 
 
+        self.min_aoc_day = 1
         self.max_aoc_day = 25
     
 
@@ -32,9 +33,13 @@ class DayScaffold():
         if not year: year = int(datetime.today().strftime("%Y"))
         if not day: day = int(datetime.today().strftime("%d"))
         
-        if day > self.max_aoc_day: 
+        if day < self.min_aoc_day: 
+            print("SKIPPING: No puzzle as date preceeds the 1st")
+            return
+        elif day > self.max_aoc_day: 
             print("SKIPPING: No puzzle as date exceeds the 25th.") 
-            return 
+            return   
+        
 
         print(f"GENERATING: files for day {day} of {year}.")
         project_root = Path(__file__).parent.parent 
