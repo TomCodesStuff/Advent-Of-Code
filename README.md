@@ -38,4 +38,28 @@ For example:
 python -m 2022.code.day_1
 ``` 
 
-Would run the solutions for day one of 2022.
+Would run the solutions for day one of 2022. 
+
+## Automated Puzzle Input 
+
+Puzzle inputs can be downloaded automatically from the website using the [`scrape_puzzle_input.py`](./utils/scrape_puzzle_input.py) script.
+
+The automation script complies with the guidelines outlined in the [AOC reddit wiki.](https://www.reddit.com/r/adventofcode/wiki/faqs/automation/)<br> 
+Specifically: 
+
+- Outbound calls are throttled to every 15 minutes in `is_rate_limit_exceeded()`
+- Downloaded inputs are cached in `cache_puzzle_input()`
+- The User-Agent Header is defined in a JSON file located in `data/request_config.json` and is set to me (Tom) since I maintain this tool/repo. 
+
+### Getting Your Puzzle Input
+
+Downloading your unique puzzle inputs requires a [session cookie.](https://www.cookieyes.com/blog/session-cookies/)<br> 
+To get your current session cookie follow the steps in [this video](https://www.youtube.com/watch?v=tUd33_CXCzE).
+
+The script will expect the session cookie to be stored in an environment variable called `SESSION_COOKIE`. <br>
+To create a environment variable copy-paste the following command into the terminal:
+
+```bash 
+export SESSION_COOKIE="session_cookie"
+```
+Make sure to replace `session_cookie` with your actual session cookie.
