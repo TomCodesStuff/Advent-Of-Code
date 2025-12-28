@@ -49,7 +49,7 @@ Specifically:
 
 - Outbound calls are throttled to every 15 minutes in `is_rate_limit_exceeded()`
 - Downloaded inputs are cached in `cache_puzzle_input()`
-- The User-Agent Header is defined in a JSON file located in `data/request_config.json` and is set to me (Tom) since I maintain this tool/repo. 
+- The User-Agent Header is defined in a JSON file located in [`data/request_config.json`](./data/request_config.json) and is set to me (Tom) since I maintain this tool/repo. 
 
 ### Getting Your Puzzle Input
 
